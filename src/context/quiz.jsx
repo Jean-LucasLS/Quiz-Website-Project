@@ -29,6 +29,14 @@ const quizReducer = (state, action) => {
                 questions: reorderedQuestions,
             };
 
+        case "CHANGE_QUESTION":
+            const nextQuestion = state.currentQuestion + 1; // Quiz progression
+
+            return {
+                ...state,
+                currentQuestion: nextQuestion, // The current question becomes the next one (+1)
+            };
+
         default:
             return state;
     }
