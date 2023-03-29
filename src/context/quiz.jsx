@@ -31,10 +31,16 @@ const quizReducer = (state, action) => {
 
         case "CHANGE_QUESTION":
             const nextQuestion = state.currentQuestion + 1; // Quiz progression
+            let endGame = false;
+
+            if(!questions[nextQuestion]) { // Verify if the index "nextQuestion" exists
+                endGame = true;
+            }
 
             return {
                 ...state,
                 currentQuestion: nextQuestion, // The current question becomes the next one (+1)
+                gameStage: endGame ? STAGES[2] : state.gameStage, // End gaming verify
             };
 
         default:
